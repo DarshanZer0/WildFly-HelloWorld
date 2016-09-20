@@ -118,74 +118,42 @@
 
     <profiles>
 
-<profile>
-            <id>domain-mode</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <configuration>
-                            <skip>true</skip>
-                            <domain>
-                                <server-groups>
-                                    <server-group>other-server-group</server-group>
-                                </server-groups>
-                                <profiles>
-                                    <profile>full-ha</profile>
-                                </profiles>
-                            </domain>
-                            <filename>${artifactId}.${packaging}</filename>
-                            <port>${wildfly.mgtPort}</port>
-                        </configuration>
-                        <executions>
-                            <!-- Deploy the application on install -->
-                            <execution>
-                                <id>deploy</id>
-                                <goals>
-                                    <goal>deploy</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
-            <id>standalone-mode</id>
+            <!-- When built in OpenShift the 'openshift' profile will be
+                used when invoking mvn. -->
+            <!-- Use this profile for any OpenShift specific customization
+                your app will need. -->
+            <!-- By default that is to put the resulting archive into the
+                'deployments' folder. -->
+            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <id>openshift</id>
             <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <configuration>
-                            <skip>true</skip>
-                            <filename>${artifactId}.${packaging}</filename>
-                            <port>${wildfly.mgtPort}</port>
-                        </configuration>
-                        <executions>
-                            <!-- Deploy the application on install -->
-                            <execution>
-                                <id>deploy</id>
-                                <goals>
-                                    <goal>deploy</goal>
-                                </goals>
-                            </execution>
- 
-                            <execution>
-                                <id>undeploy</id>
-                                <goals>
-                                    <goal>undeploy</goal>
-                                </goals>
-                                <configuration>
-                                    <ignoreMissingDeployment>true</ignoreMissingDeployment>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
+<plugins>
+ <plugin>
+        <groupId>org.jboss.as.plugins</groupId>
+        <artifactId>jboss-as-maven-plugin</artifactId>
+        <version>7.1.1.Final</version>
+        <configuration>
+            <hostname>${deploy.jboss.host}</hostname>
+            <port>${deploy.jboss.port}</port>
+            <username>${deploy.jboss.user}</username>
+            <password>${deploy.jboss.password}</password>
+            <name>${backend.deployment-name}</name>
+            <filename>${project.build.finalName}.war</filename>
+            <skip>${skipDeployment}</skip>
+        </configuration>
+        <executions>
+            <execution>
+                <id>deploy-jar</id>
+                <phase>install</phase>
+                <goals>
+                    <goal>deploy</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+</plugins>
             </build>
         </profile>
-    </profiles>
-
+</profiles>
 </project>
