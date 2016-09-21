@@ -103,7 +103,8 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.1.Final</version>
 		<configuration>
-			<hostname>192.168.4.10</hostname>
+			<hostname>10.10.11.33</hostname>
+			<port>8082</port>
                    	 <username>admin</username>
                    	 <password>admin</password>
                 </configuration>
