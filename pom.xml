@@ -103,8 +103,8 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.1.Final</version>
                 <configuration>
-			<hostname>127.0.0.1</hostname>
-			<port>9998</port>
+			<hostname>${jboss.domain.master.address}</hostname>
+			<port>9999</port>
                 	<username>admin</username>
                		<password>admin</password>
                 </configuration>
