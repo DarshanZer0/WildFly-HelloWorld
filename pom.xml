@@ -112,39 +112,23 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
-            </plugin>
-        </plugins>
-    </build>
-
-    <profiles>
-
-        <profile>
-            <!-- When built in OpenShift the 'openshift' profile will be
-                used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization
-                your app will need. -->
-            <!-- By default that is to put the resulting archive into the
-                'deployments' folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-            <id>openshift</id>
-            <build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<configuration>
-					<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-					<warName>${plugin.war.warName}</warName>
-				</configuration>
-			</plugin>
-			        <plugin>
-			            <groupId>org.codehaus.mojo</groupId>
-           				 <artifactId>jboss-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                        </plugin>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-war-plugin</artifactId>
+                                <version>2.1.1</version>
+                                <configuration>
+                                        <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+                                        <warName>${plugin.war.warName}</warName>
+                                </configuration>
+                        </plugin>
+                                <plugin>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                         <artifactId>jboss-maven-plugin</artifactId>
             <version>1.5.0</version>
             <configuration>
                 <jbossHome>/usr/jboss-4.2.3.GA</jbossHome>
@@ -152,8 +136,6 @@
                 <fileName>target/my-project.war</fileName>
             </configuration>
         </plugin>
-		</plugins>
-            </build>
-        </profile>
-	</profiles>
+        </plugins>
+    </build>
 </project>
