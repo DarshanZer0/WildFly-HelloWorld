@@ -41,9 +41,15 @@
         <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
 
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
+<<<<<<< HEAD
         <version.jboss.bom>10.1.0.Final</version.jboss.bom>
         <!-- other plugin versions -->
         <version.war.plugin>3.0.0</version.war.plugin>
+=======
+        <version.jboss.bom>10.0.0.Final</version.jboss.bom>
+        <!-- other plugin versions -->
+        <version.war.plugin>2.1.1</version.war.plugin>
+>>>>>>> de6f664049dba6ecce9a0445f8caa8db63284977
 
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -99,6 +105,7 @@
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
+<<<<<<< HEAD
                 <artifactId>maven-war-plugin</artifactId>
                 <version>${version.war.plugin}</version>
                 <configuration>
@@ -140,4 +147,30 @@
             </build>
         </profile>
     </profiles>
+=======
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.0.1.Final</version>
+                <configuration>
+			<hostname>${jboss.domain.master.address}</hostname>
+			<port>9998</port>
+                	<username>admin</username>
+               		<password>admin</password>
+                </configuration>
+            </plugin>
+<plugin>
+            <groupId>org.jboss.as.plugins</groupId>
+            <artifactId>jboss-as-maven-plugin</artifactId>
+            <version>7.5.Final</version>
+            <configuration>
+                <filename>${artifactId}-${project.version}.jar</filename>
+		<hostname>10.10.11.33</hostname>
+                <username>admin</username>
+                <password>admin</password>
+		<port>9998</port>
+            </configuration>
+</plugin>
+        </plugins>
+    </build>
+>>>>>>> de6f664049dba6ecce9a0445f8caa8db63284977
 </project>
