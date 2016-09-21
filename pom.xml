@@ -98,17 +98,17 @@
         <!-- Set the name of the WAR, used as the context root when the app is deployed. -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.1.Final</version>
-		<configuration>
-			<hostname>10.10.11.33</hostname>
-			<port>8082</port>
-                   	 <username>admin</username>
-                   	 <password>admin</password>
-                </configuration>
-            </plugin>
+<plugin>
+            <groupId>org.jboss.as.plugins</groupId>
+            <artifactId>jboss-as-maven-plugin</artifactId>
+            <version>7.5.Final</version>
+            <configuration>
+                <filename>${artifactId}-${project.version}.jar</filename>
+                <username>admin</username>
+                <password>admin</password>
+		<port>9998</port>
+            </configuration>
+</plugin>
         </plugins>
     </build>
 </project>
