@@ -104,6 +104,7 @@
             <version>7.5.Final</version>
             <configuration>
                 <filename>${artifactId}-${project.version}.jar</filename>
+		<hostname>10.10.11.33</hostname>
                 <username>admin</username>
                 <password>admin</password>
 		<port>9998</port>
